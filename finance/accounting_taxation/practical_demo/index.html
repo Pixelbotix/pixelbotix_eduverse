@@ -22,7 +22,7 @@
       --primary: #0284c7;
       --primary-hover: #0369a1;
 
-      --header-bg: rgba(255, 255, 255, 0.94);
+      --header-bg: rgba(255, 255, 255, 0.96);
       --footer-bg: #f8fafc;
 
       color-scheme: light;
@@ -39,7 +39,7 @@
       --primary: #38bdf8;
       --primary-hover: #0284c7;
 
-      --header-bg: rgba(15, 23, 42, 0.94);
+      --header-bg: rgba(15, 23, 42, 0.96);
       --footer-bg: #0b1220;
 
       color-scheme: dark;
@@ -71,8 +71,7 @@
 
       background: var(--bg);
 
-      transition:
-        background-color 0.25s ease;
+      transition: background-color 0.25s ease;
     }
 
     body {
@@ -81,9 +80,6 @@
 
       background: var(--bg);
       color: var(--text);
-
-      display: flex;
-      flex-direction: column;
 
       transition:
         background-color 0.25s ease,
@@ -98,8 +94,6 @@
     .navbar {
       width: 100%;
       height: 72px;
-
-      flex-shrink: 0;
 
       background: var(--header-bg);
       border-bottom: 1px solid var(--border);
@@ -135,7 +129,6 @@
       align-items: center;
 
       text-decoration: none;
-
       flex-shrink: 0;
     }
 
@@ -149,7 +142,6 @@
     .nav-right {
       display: flex;
       align-items: center;
-
       gap: 26px;
     }
 
@@ -225,32 +217,25 @@
 
 
     /* =========================================================
-       SIMULATOR AREA
+       PRACTICAL SIMULATOR
+       
+       IMPORTANT:
+       The simulator keeps its original 100vh height.
     ========================================================= */
 
     .simulator-container {
       width: 100%;
 
-      flex: 1;
-
-      min-height:
-        calc(100vh - 72px - 150px);
-
       background: var(--bg);
 
-      transition:
-        background-color 0.25s ease;
+      transition: background-color 0.25s ease;
     }
 
     .simulator-container iframe {
       width: 100%;
-      height: 100%;
-
-      min-height:
-        calc(100vh - 72px - 150px);
+      height: 100vh;
 
       border: 0;
-
       display: block;
     }
 
@@ -261,8 +246,6 @@
 
     .footer {
       width: 100%;
-
-      flex-shrink: 0;
 
       background: var(--footer-bg);
       border-top: 1px solid var(--border);
@@ -373,19 +356,8 @@
         gap: 17px;
       }
 
-      .simulator-container {
-        min-height:
-          calc(100vh - 66px - 180px);
-      }
-
-      .simulator-container iframe {
-        min-height:
-          calc(100vh - 66px - 180px);
-      }
-
       .footer-main {
         align-items: flex-start;
-
         flex-direction: column;
 
         gap: 20px;
@@ -429,16 +401,6 @@
       .theme-toggle svg {
         width: 17px;
         height: 17px;
-      }
-
-      .simulator-container {
-        min-height:
-          calc(100vh - 62px - 195px);
-      }
-
-      .simulator-container iframe {
-        min-height:
-          calc(100vh - 62px - 195px);
       }
 
       .footer-container {
@@ -522,17 +484,17 @@
         </a>
 
 
-        <!-- Theme Toggle -->
+        <!-- Dark / Light Mode -->
 
         <button
           type="button"
           class="theme-toggle"
           id="themeToggle"
           aria-label="Toggle dark and light mode"
-          title="Toggle theme"
+          title="Toggle dark and light mode"
         >
 
-          <!-- Moon Icon -->
+          <!-- Moon -->
 
           <svg
             class="moon-icon"
@@ -551,7 +513,7 @@
           </svg>
 
 
-          <!-- Sun Icon -->
+          <!-- Sun -->
 
           <svg
             class="sun-icon"
@@ -589,7 +551,9 @@
 
   <!-- ========================================================
        EXISTING PRACTICAL SIMULATOR
-       IFRAME SOURCE UNCHANGED
+       
+       IMPORTANT:
+       This iframe is kept exactly as provided.
   ========================================================= -->
 
   <main class="simulator-container">
@@ -663,11 +627,9 @@
       <div class="footer-bottom">
 
         <div class="copyright">
-
           &copy;
           <span id="year"></span>
           PixelBotix Technologies Pvt. Ltd.
-
         </div>
 
         <div class="eduverse-label">
@@ -697,7 +659,8 @@
 
     /* ========================================================
        DARK / LIGHT MODE
-       Shared PixelBotix Eduverse preference
+       
+       Shared with the other Eduverse wrapper pages.
     ========================================================= */
 
     const themeToggle =
@@ -708,9 +671,9 @@
 
 
     /*
-     * Theme priority:
+     * Priority:
      *
-     * 1. Saved PixelBotix preference
+     * 1. Saved PixelBotix theme
      * 2. Browser / OS preference
      * 3. Light mode
      */
@@ -734,7 +697,7 @@
 
 
     /* ========================================================
-       TOGGLE
+       THEME TOGGLE
     ========================================================= */
 
     themeToggle.addEventListener("click", function () {

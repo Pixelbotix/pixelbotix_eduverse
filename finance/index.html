@@ -7,19 +7,62 @@
   <title>PixelBotix Eduverse | Finance Portal</title>
 
   <style>
+    /* =========================================================
+       THEME VARIABLES
+    ========================================================= */
+
     :root {
+      --bg: #ffffff;
+      --bg-secondary: #f8fafc;
+      --surface: #ffffff;
+
+      --border: #e2e8f0;
+
+      --text: #0f172a;
+      --muted: #64748b;
+
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+
+      --header-bg: rgba(255, 255, 255, 0.94);
+      --footer-bg: #f8fafc;
+
+      --icon-bg: #e0f2fe;
+
+      color-scheme: light;
+    }
+
+    html.dark {
       --bg: #0f172a;
+      --bg-secondary: #111827;
+      --surface: #1e293b;
+
       --border: #334155;
+
       --text: #f8fafc;
       --muted: #94a3b8;
+
       --primary: #38bdf8;
+      --primary-hover: #0284c7;
+
+      --header-bg: rgba(15, 23, 42, 0.94);
       --footer-bg: #0b1220;
+
+      --icon-bg: rgba(56, 189, 248, 0.10);
+
+      color-scheme: dark;
     }
+
+
+    /* =========================================================
+       GLOBAL
+    ========================================================= */
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -30,44 +73,59 @@
         sans-serif;
     }
 
-    html,
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      transition: background-color 0.25s ease;
+    }
+
     body {
       width: 100%;
-      min-height: 100%;
+      min-height: 100vh;
+
       background: var(--bg);
       color: var(--text);
-    }
 
-    body {
       display: flex;
       flex-direction: column;
+
+      transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
     }
 
-    /* =========================
+
+    /* =========================================================
        HEADER
-    ========================= */
+    ========================================================= */
 
     .navbar {
       width: 100%;
       height: 72px;
+
       flex-shrink: 0;
 
-      background: rgba(15, 23, 42, 0.96);
-      border-bottom: 1px solid rgba(51, 65, 85, 0.75);
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--border);
 
       display: flex;
       align-items: center;
 
       position: relative;
-      z-index: 10;
+      z-index: 100;
 
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+
+      transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease;
     }
 
     .nav-container {
       width: 100%;
       max-width: 1180px;
+
       margin: 0 auto;
       padding: 0 24px;
 
@@ -79,24 +137,29 @@
     .logo {
       display: flex;
       align-items: center;
+
       text-decoration: none;
+
       flex-shrink: 0;
     }
 
     .logo img {
       height: 48px;
       width: auto;
+
       display: block;
     }
 
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 28px;
+
+      gap: 26px;
     }
 
     .nav-link {
       color: var(--muted);
+
       text-decoration: none;
 
       font-size: 0.95rem;
@@ -114,17 +177,72 @@
     }
 
 
-    /* =========================
+    /* =========================================================
+       THEME TOGGLE
+    ========================================================= */
+
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+
+      border-radius: 10px;
+
+      border: 1px solid var(--border);
+      background: transparent;
+
+      color: var(--text);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      background: var(--bg-secondary);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .theme-toggle svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .sun-icon {
+      display: none;
+    }
+
+    html.dark .sun-icon {
+      display: block;
+    }
+
+    html.dark .moon-icon {
+      display: none;
+    }
+
+
+    /* =========================================================
        IFRAME AREA
-    ========================= */
+    ========================================================= */
 
     .portal-wrapper {
       width: 100%;
+
       flex: 1;
 
-      min-height: calc(100vh - 72px - 120px);
+      min-height:
+        calc(100vh - 72px - 150px);
 
-      background: #ffffff;
+      background: var(--bg);
+
+      transition: background-color 0.25s ease;
     }
 
     iframe {
@@ -133,26 +251,33 @@
       width: 100%;
       height: 100%;
 
-      min-height: calc(100vh - 72px - 120px);
+      min-height:
+        calc(100vh - 72px - 150px);
 
       border: none;
     }
 
 
-    /* =========================
+    /* =========================================================
        FOOTER
-    ========================= */
+    ========================================================= */
 
     .footer {
       width: 100%;
+
       flex-shrink: 0;
 
       background: var(--footer-bg);
-      border-top: 1px solid rgba(51, 65, 85, 0.7);
+      border-top: 1px solid var(--border);
+
+      transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease;
     }
 
     .footer-container {
       max-width: 1180px;
+
       margin: 0 auto;
 
       padding: 30px 24px 18px;
@@ -169,17 +294,20 @@
     .footer-brand {
       display: flex;
       flex-direction: column;
+
       gap: 8px;
     }
 
     .footer-logo {
       height: 40px;
       width: auto;
+
       display: block;
     }
 
     .footer-description {
       color: var(--muted);
+
       font-size: 0.82rem;
       line-height: 1.5;
     }
@@ -187,11 +315,13 @@
     .footer-links {
       display: flex;
       align-items: center;
+
       gap: 24px;
     }
 
     .footer-link {
       color: var(--muted);
+
       text-decoration: none;
 
       font-size: 0.86rem;
@@ -207,7 +337,7 @@
       margin-top: 22px;
       padding-top: 15px;
 
-      border-top: 1px solid rgba(51, 65, 85, 0.55);
+      border-top: 1px solid var(--border);
 
       display: flex;
       align-items: center;
@@ -218,14 +348,15 @@
 
     .copyright,
     .eduverse-label {
-      color: #64748b;
+      color: var(--muted);
+
       font-size: 0.76rem;
     }
 
 
-    /* =========================
+    /* =========================================================
        TABLET
-    ========================= */
+    ========================================================= */
 
     @media (max-width: 800px) {
 
@@ -242,28 +373,31 @@
       }
 
       .nav-right {
-        gap: 18px;
+        gap: 17px;
       }
 
       .portal-wrapper {
-        min-height: calc(100vh - 66px - 170px);
+        min-height:
+          calc(100vh - 66px - 180px);
       }
 
       iframe {
-        min-height: calc(100vh - 66px - 170px);
+        min-height:
+          calc(100vh - 66px - 180px);
       }
 
       .footer-main {
         align-items: flex-start;
         flex-direction: column;
+
         gap: 20px;
       }
     }
 
 
-    /* =========================
+    /* =========================================================
        MOBILE
-    ========================= */
+    ========================================================= */
 
     @media (max-width: 520px) {
 
@@ -280,19 +414,33 @@
       }
 
       .nav-right {
-        gap: 15px;
+        gap: 12px;
       }
 
       .nav-link {
-        font-size: 0.84rem;
+        font-size: 0.82rem;
+      }
+
+      .theme-toggle {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 9px;
+      }
+
+      .theme-toggle svg {
+        width: 17px;
+        height: 17px;
       }
 
       .portal-wrapper {
-        min-height: calc(100vh - 62px - 190px);
+        min-height:
+          calc(100vh - 62px - 195px);
       }
 
       iframe {
-        min-height: calc(100vh - 62px - 190px);
+        min-height:
+          calc(100vh - 62px - 195px);
       }
 
       .footer-container {
@@ -328,15 +476,18 @@
   </style>
 </head>
 
+
 <body>
 
-  <!-- =========================
+  <!-- ========================================================
        PIXELBOTIX EDUVERSE HEADER
-  ========================== -->
+  ========================================================= -->
 
   <header class="navbar">
 
     <div class="nav-container">
+
+      <!-- Logo -->
 
       <a
         href="https://pixelbotix.com/"
@@ -348,6 +499,9 @@
           alt="PixelBotix"
         />
       </a>
+
+
+      <!-- Navigation + Theme -->
 
       <nav
         class="nav-right"
@@ -369,6 +523,59 @@
           Eduverse
         </a>
 
+
+        <!-- Dark / Light Mode -->
+
+        <button
+          type="button"
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle dark and light mode"
+          title="Toggle theme"
+        >
+
+          <!-- Moon -->
+
+          <svg
+            class="moon-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3
+                     7 7 0 0 0 21 12.79z"/>
+          </svg>
+
+
+          <!-- Sun -->
+
+          <svg
+            class="sun-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2"/>
+            <path d="M12 20v2"/>
+            <path d="M4.93 4.93l1.41 1.41"/>
+            <path d="M17.66 17.66l1.41 1.41"/>
+            <path d="M2 12h2"/>
+            <path d="M20 12h2"/>
+            <path d="M4.93 19.07l1.41-1.41"/>
+            <path d="M17.66 6.34l1.41-1.41"/>
+          </svg>
+
+        </button>
+
       </nav>
 
     </div>
@@ -376,10 +583,10 @@
   </header>
 
 
-  <!-- =========================
+  <!-- ========================================================
        EXISTING FINANCE PORTAL
-       IFRAME UNCHANGED
-  ========================== -->
+       DO NOT CHANGE THE IFRAME SOURCE
+  ========================================================= -->
 
   <main class="portal-wrapper">
 
@@ -393,9 +600,9 @@
   </main>
 
 
-  <!-- =========================
+  <!-- ========================================================
        PIXELBOTIX EDUVERSE FOOTER
-  ========================== -->
+  ========================================================= -->
 
   <footer class="footer">
 
@@ -452,7 +659,8 @@
       <div class="footer-bottom">
 
         <div class="copyright">
-          &copy; <span id="year"></span>
+          &copy;
+          <span id="year"></span>
           PixelBotix Technologies Pvt. Ltd.
         </div>
 
@@ -467,9 +675,70 @@
   </footer>
 
 
+  <!-- ========================================================
+       JAVASCRIPT
+  ========================================================= -->
+
   <script>
+
+    /* ========================================================
+       YEAR
+    ========================================================= */
+
     document.getElementById("year").textContent =
       new Date().getFullYear();
+
+
+    /* ========================================================
+       THEME
+       Light / Dark + Local Storage
+    ========================================================= */
+
+    const themeToggle =
+      document.getElementById("themeToggle");
+
+    const savedTheme =
+      localStorage.getItem("pixelbotix-theme");
+
+    /*
+     * Priority:
+     * 1. Previously selected theme
+     * 2. System preference
+     * 3. Light mode
+     */
+
+    if (savedTheme === "dark") {
+
+      document.documentElement.classList.add("dark");
+
+    } else if (savedTheme === "light") {
+
+      document.documentElement.classList.remove("dark");
+
+    } else if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+
+      document.documentElement.classList.add("dark");
+
+    }
+
+
+    themeToggle.addEventListener("click", function () {
+
+      document.documentElement.classList.toggle("dark");
+
+      const isDark =
+        document.documentElement.classList.contains("dark");
+
+      localStorage.setItem(
+        "pixelbotix-theme",
+        isDark ? "dark" : "light"
+      );
+
+    });
+
   </script>
 
 </body>

@@ -471,8 +471,9 @@
 
         .portal-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 22px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            align-items: stretch;
+            gap: 20px;
             width: 100%;
         }
 
@@ -487,7 +488,7 @@
             min-width: 0;
             min-height: 100%;
             overflow: hidden;
-            padding: 28px;
+            padding: 25px 23px;
             border: 1px solid var(--border);
             border-radius: 20px;
             background: var(--surface);
@@ -504,7 +505,30 @@
             position: absolute;
             inset: 0 0 auto;
             height: 4px;
-            background: var(--course-accent);
+            background: linear-gradient(
+                90deg,
+                var(--course-accent),
+                color-mix(in srgb, var(--course-accent) 45%, white)
+            );
+        }
+
+        .portal-card.active::after {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            top: 14px;
+            right: -42px;
+            width: 112px;
+            height: 112px;
+            border: 1px solid color-mix(in srgb, var(--course-accent) 12%, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .portal-card.active .portal-card-content,
+        .portal-card.active > .portal-button {
+            position: relative;
+            z-index: 1;
         }
 
         .portal-card.active:hover {
@@ -529,6 +553,42 @@
             --course-accent: #7c3aed;
             --course-soft: #ede9fe;
             --course-ink: #5b21b6;
+        }
+
+        .course-image-wrap {
+            position: relative;
+            z-index: 1;
+            width: calc(100% + 46px);
+            aspect-ratio: 16 / 9;
+            margin: -25px -23px 22px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--surface-muted);
+        }
+
+        .course-image-wrap::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.02), rgba(15, 23, 42, 0.16));
+        }
+
+        .course-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+
+        .portal-card.active:hover .course-image {
+            transform: scale(1.045);
+        }
+
+        .portal-card.engineering .course-image-wrap {
+            filter: saturate(0.82);
         }
 
         .portal-card-content {
@@ -768,8 +828,21 @@
                 gap: 20px;
             }
 
+            .portal-grid {
+                gap: 16px;
+            }
+
             .portal-card {
-                padding: 25px;
+                padding: 22px 19px;
+            }
+
+            .course-image-wrap {
+                width: calc(100% + 38px);
+                margin: -22px -19px 20px;
+            }
+
+            .portal-title {
+                font-size: 20px;
             }
         }
 
@@ -878,6 +951,12 @@
                 grid-column: auto;
                 padding: 24px 22px;
                 border-radius: 17px;
+            }
+
+            .course-image-wrap {
+                width: calc(100% + 44px);
+                margin: -24px -22px 20px;
+                aspect-ratio: 16 / 8.5;
             }
 
             .portal-title {
@@ -1053,6 +1132,17 @@
                     <!-- ACCOUNTING AND TAXATION -->
 
                     <article class="portal-card active accounting">
+                        <div class="course-image-wrap">
+                            <img
+                                class="course-image"
+                                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=82"
+                                alt="Calculator, financial documents, and accounting workspace"
+                                width="900"
+                                height="506"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </div>
                         <div class="portal-card-content">
                             <div class="portal-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none"
@@ -1100,6 +1190,17 @@
                     <!-- ZOHO BOOKS -->
 
                     <article class="portal-card active zoho">
+                        <div class="course-image-wrap">
+                            <img
+                                class="course-image"
+                                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=82"
+                                alt="Digital analytics dashboard on a laptop screen"
+                                width="900"
+                                height="506"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </div>
                         <div class="portal-card-content">
                             <div class="portal-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none"
@@ -1148,6 +1249,17 @@
                     <!-- ROBOTICS AND ENGINEERING -->
 
                     <article class="portal-card disabled engineering">
+                        <div class="course-image-wrap">
+                            <img
+                                class="course-image"
+                                src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=82"
+                                alt="Modern robotics technology"
+                                width="900"
+                                height="506"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </div>
                         <div class="portal-card-content">
                             <div class="portal-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none"

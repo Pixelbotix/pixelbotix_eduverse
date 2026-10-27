@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,19 +6,33 @@
 
     <meta
         name="description"
-        content="Explore PixelBotix Eduverse courses in Accounting and Taxation and Zoho Books. Access practical training in accounting, GST, taxation, and cloud accounting."
+        content="Explore PixelBotix Eduverse learning categories, including Accounting and Taxation, Zoho Books, and Robotics and Engineering. Build practical, career-oriented skills."
     >
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#f8fafc">
 
-    <title>PixelBotix Eduverse | Accounting, Taxation & Zoho Books</title>
-
+    <title>PixelBotix Eduverse | Explore Learning Categories</title>
     <link rel="canonical" href="https://eduverse.pixelbotix.com/">
 
     <style>
         /* =========================================================
-           RESET AND GLOBAL STYLES
+           RESET AND DESIGN TOKENS
         ========================================================= */
+
+        :root {
+            color-scheme: light;
+            --page-bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-muted: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --brand: #0284c7;
+            --brand-hover: #0369a1;
+            --focus: #38bdf8;
+            --shadow-card: 0 10px 30px rgba(15, 23, 42, 0.055);
+            --shadow-card-hover: 0 20px 42px rgba(15, 23, 42, 0.10);
+        }
 
         *,
         *::before,
@@ -31,9 +44,15 @@
 
         html {
             scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
         }
 
         body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--page-bg);
+            color: var(--text-primary);
             font-family:
                 -apple-system,
                 BlinkMacSystemFont,
@@ -42,17 +61,28 @@
                 Helvetica,
                 Arial,
                 sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
             transition: background-color 0.25s ease, color 0.25s ease;
         }
 
         body.dark {
-            background: #0f172a;
-            color: #f8fafc;
+            color-scheme: dark;
+            --page-bg: #0f172a;
+            --surface: #1e293b;
+            --surface-muted: #172033;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --brand: #38bdf8;
+            --brand-hover: #7dd3fc;
+            --focus: #7dd3fc;
+            --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.14);
+            --shadow-card-hover: 0 20px 42px rgba(0, 0, 0, 0.24);
+        }
+
+        body,
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
         }
 
         a {
@@ -66,42 +96,49 @@
 
         button:focus-visible,
         a:focus-visible {
-            outline: 3px solid #38bdf8;
+            outline: 3px solid var(--focus);
             outline-offset: 4px;
         }
 
+        svg {
+            display: block;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         /* =========================================================
-           NAVBAR
+           NAVIGATION
         ========================================================= */
 
         .navbar {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 68px;
-            background: rgba(255, 255, 255, 0.96);
-            border-bottom: 1px solid #e2e8f0;
+            inset: 0 0 auto;
             z-index: 1000;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: background-color 0.25s ease, border-color 0.25s ease;
-        }
-
-        body.dark .navbar {
-            background: rgba(15, 23, 42, 0.96);
-            border-color: #334155;
+            height: 68px;
+            background: color-mix(in srgb, var(--surface) 94%, transparent);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .navbar-container {
-            width: 100%;
-            max-width: 1280px;
+            width: min(100% - 48px, 1280px);
             height: 100%;
-            margin: 0 auto;
-            padding: 0 24px;
+            margin-inline: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 24px;
         }
 
         .brand {
@@ -112,52 +149,34 @@
 
         .brand img {
             display: block;
-            height: 50px;
             width: auto;
+            height: 48px;
             max-width: 210px;
             object-fit: contain;
         }
-
-        /* =========================================================
-           DESKTOP NAVIGATION
-        ========================================================= */
 
         .desktop-nav {
             display: flex;
             align-items: center;
             gap: 28px;
             margin-left: auto;
-            margin-right: 24px;
         }
 
         .nav-link {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            color: #475569;
+            min-height: 44px;
+            color: var(--text-secondary);
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 650;
             white-space: nowrap;
             transition: color 0.2s ease;
         }
 
         .nav-link:hover,
         .nav-link.active {
-            color: #0284c7;
+            color: var(--brand);
         }
-
-        body.dark .nav-link {
-            color: #cbd5e1;
-        }
-
-        body.dark .nav-link:hover,
-        body.dark .nav-link.active {
-            color: #38bdf8;
-        }
-
-        /* =========================================================
-           NAV ACTIONS
-        ========================================================= */
 
         .nav-actions {
             display: flex;
@@ -170,136 +189,151 @@
         .mobile-menu-button {
             width: 40px;
             height: 40px;
-            border: 0;
-            border-radius: 9px;
-            background: transparent;
-            color: #475569;
+            border: 1px solid transparent;
+            border-radius: 11px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            background: transparent;
+            color: var(--text-secondary);
             cursor: pointer;
             font-size: 20px;
-            transition: background-color 0.2s ease, color 0.2s ease;
+            transition:
+                background-color 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease;
         }
 
         .icon-button:hover,
         .mobile-menu-button:hover {
-            background: #f1f5f9;
-            color: #0284c7;
-        }
-
-        body.dark .icon-button,
-        body.dark .mobile-menu-button {
-            color: #cbd5e1;
-        }
-
-        body.dark .icon-button:hover,
-        body.dark .mobile-menu-button:hover {
-            background: #1e293b;
-            color: #38bdf8;
+            background: var(--surface-muted);
+            border-color: var(--border);
+            color: var(--brand);
         }
 
         .mobile-menu-button {
             display: none;
         }
 
-        /* =========================================================
-           MOBILE NAVIGATION
-        ========================================================= */
-
         .mobile-nav {
             display: none;
             position: absolute;
-            top: 68px;
-            left: 0;
-            right: 0;
-            background: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 16px 24px 20px;
-            box-shadow: 0 12px 20px rgba(15, 23, 42, 0.06);
+            inset: 68px 0 auto;
+            padding: 12px 24px 18px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
         }
 
         .mobile-nav.open {
             display: block;
         }
 
-        body.dark .mobile-nav {
-            background: #0f172a;
-            border-color: #334155;
-        }
-
         .mobile-nav-link {
             display: block;
-            padding: 13px 0;
-            border-bottom: 1px solid #e2e8f0;
-            color: #475569;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
             font-size: 15px;
-            font-weight: 600;
+            font-weight: 650;
         }
 
         .mobile-nav-link:last-child {
             border-bottom: 0;
         }
 
-        body.dark .mobile-nav-link {
-            color: #cbd5e1;
-            border-color: #334155;
-        }
-
         .mobile-nav-link:hover,
         .mobile-nav-link.active {
-            color: #0284c7;
-        }
-
-        body.dark .mobile-nav-link:hover,
-        body.dark .mobile-nav-link.active {
-            color: #38bdf8;
+            color: var(--brand);
         }
 
         /* =========================================================
-           MAIN CONTENT
+           MAIN LAYOUT
         ========================================================= */
 
         main {
             flex: 1;
             width: 100%;
-            padding: 128px 24px 80px;
+            padding: 112px 24px 76px;
         }
 
         .main-container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
+            width: min(100%, 1100px);
+            margin-inline: auto;
         }
 
         /* =========================================================
-           HERO
+           HERO: SUBTLE CSS GRAPHICS, NO EXTERNAL ASSETS
         ========================================================= */
 
         .hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: 54px 34px 50px;
+            margin-bottom: 38px;
+            border: 1px solid #dbeafe;
+            border-radius: 28px;
             text-align: center;
-            max-width: 760px;
-            margin: 0 auto 52px;
+            background:
+                radial-gradient(ellipse at 100% 0%, rgba(56, 189, 248, 0.20), transparent 38%),
+                radial-gradient(ellipse at 0% 100%, rgba(129, 140, 248, 0.14), transparent 36%),
+                linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            pointer-events: none;
+            border: 1px solid rgba(2, 132, 199, 0.15);
+            border-radius: 50%;
+        }
+
+        .hero::before {
+            width: 280px;
+            height: 280px;
+            top: -145px;
+            right: -80px;
+        }
+
+        .hero::after {
+            width: 190px;
+            height: 190px;
+            top: -100px;
+            right: -35px;
+        }
+
+        body.dark .hero {
+            border-color: #334155;
+            background:
+                radial-gradient(ellipse at 100% 0%, rgba(56, 189, 248, 0.14), transparent 38%),
+                radial-gradient(ellipse at 0% 100%, rgba(129, 140, 248, 0.12), transparent 36%),
+                linear-gradient(135deg, #172554 0%, #0f172a 100%);
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            padding: 7px 13px;
-            margin-bottom: 18px;
+            padding: 8px 13px;
+            margin-bottom: 20px;
+            border: 1px solid #bae6fd;
             border-radius: 999px;
             background: #e0f2fe;
             color: #0369a1;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.04em;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.075em;
             text-transform: uppercase;
         }
 
         body.dark .hero-badge {
-            background: rgba(14, 116, 144, 0.18);
-            color: #67e8f9;
+            border-color: #155e75;
+            background: rgba(14, 116, 144, 0.20);
+            color: #a5f3fc;
         }
 
         .hero-badge-dot {
@@ -307,15 +341,17 @@
             height: 7px;
             border-radius: 50%;
             background: #0284c7;
+            box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.12);
         }
 
         .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 3.25rem);
-            line-height: 1.1;
-            font-weight: 800;
-            letter-spacing: -0.035em;
+            max-width: 780px;
+            margin: 0 auto 18px;
             color: #0f172a;
-            margin-bottom: 16px;
+            font-size: clamp(2.35rem, 5.5vw, 3.7rem);
+            font-weight: 850;
+            line-height: 1.08;
+            letter-spacing: -0.055em;
         }
 
         body.dark .hero h1 {
@@ -331,86 +367,186 @@
         }
 
         .hero p {
-            max-width: 680px;
-            margin: 0 auto;
+            max-width: 650px;
+            margin-inline: auto;
             color: #64748b;
-            font-size: 17px;
-            line-height: 1.7;
+            font-size: 16px;
+            line-height: 1.8;
         }
 
         body.dark .hero p {
-            color: #94a3b8;
+            color: #cbd5e1;
+        }
+
+        .hero-bottom-note {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 25px;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .hero-bottom-note span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .hero-bottom-note svg {
+            width: 16px;
+            height: 16px;
+            color: #0284c7;
+        }
+
+        .hero-note-separator {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #94a3b8;
+        }
+
+        body.dark .hero-bottom-note {
+            color: #cbd5e1;
+        }
+
+        body.dark .hero-bottom-note svg {
+            color: #38bdf8;
         }
 
         /* =========================================================
-           COURSE GRID
-           Three cards on desktop, one column on mobile.
+           COURSE SECTION HEADING
+        ========================================================= */
+
+        .course-section-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .course-section-heading h2 {
+            color: var(--text-primary);
+            font-size: clamp(1.35rem, 3vw, 1.65rem);
+            font-weight: 800;
+            letter-spacing: -0.035em;
+        }
+
+        .course-section-heading p {
+            margin-top: 6px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .course-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 12px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: var(--surface);
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 750;
+            white-space: nowrap;
+        }
+
+        .course-count-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #0ea5e9;
+        }
+
+        /* =========================================================
+           COURSE GRID AND CARDS
         ========================================================= */
 
         .portal-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 24px;
+            gap: 22px;
             width: 100%;
         }
 
-        /* =========================================================
-           COURSE CARDS
-        ========================================================= */
-
         .portal-card {
+            --course-accent: #0284c7;
+            --course-soft: #e0f2fe;
+            --course-ink: #0369a1;
+
             position: relative;
             display: flex;
             flex-direction: column;
             min-width: 0;
-            min-height: 330px;
-            padding: 32px;
-            border-radius: 18px;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+            min-height: 100%;
+            overflow: hidden;
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--surface);
+            box-shadow: var(--shadow-card);
             transition:
-                transform 0.25s ease,
-                border-color 0.25s ease,
-                box-shadow 0.25s ease,
-                background-color 0.25s ease;
+                transform 0.24s ease,
+                border-color 0.24s ease,
+                box-shadow 0.24s ease,
+                background-color 0.24s ease;
         }
 
-        body.dark .portal-card {
-            background: #1e293b;
-            border-color: #334155;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        .portal-card.active::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto;
+            height: 4px;
+            background: var(--course-accent);
         }
 
         .portal-card.active:hover {
-            transform: translateY(-5px);
-            border-color: #38bdf8;
-            box-shadow: 0 18px 35px rgba(14, 116, 144, 0.12);
+            transform: translateY(-4px);
+            border-color: var(--course-accent);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .portal-card.accounting {
+            --course-accent: #0d9488;
+            --course-soft: #ccfbf1;
+            --course-ink: #115e59;
+        }
+
+        .portal-card.zoho {
+            --course-accent: #2563eb;
+            --course-soft: #dbeafe;
+            --course-ink: #1d4ed8;
+        }
+
+        .portal-card.engineering {
+            --course-accent: #7c3aed;
+            --course-soft: #ede9fe;
+            --course-ink: #5b21b6;
         }
 
         .portal-card-content {
             flex: 1;
         }
 
-        /* =========================================================
-           COURSE ICONS
-        ========================================================= */
-
         .portal-icon {
-            width: 58px;
-            height: 58px;
-            border-radius: 13px;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 24px;
-            background: #e0f2fe;
-            color: #0284c7;
-        }
-
-        body.dark .portal-icon {
-            background: rgba(56, 189, 248, 0.1);
-            color: #38bdf8;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 22px;
+            border: 1px solid color-mix(in srgb, var(--course-accent) 13%, transparent);
+            border-radius: 16px;
+            background: var(--course-soft);
+            color: var(--course-ink);
         }
 
         .portal-icon svg {
@@ -418,79 +554,138 @@
             height: 30px;
         }
 
-        .portal-card.disabled {
-            opacity: 0.68;
+        body.dark .portal-icon {
+            border-color: var(--border);
+            background: rgba(148, 163, 184, 0.10);
+            color: var(--course-accent);
         }
 
-        .portal-card.disabled .portal-icon {
-            background: #f1f5f9;
-            color: #64748b;
+        .course-category-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 12px;
+            color: var(--course-ink);
+            font-size: 11px;
+            font-weight: 850;
+            letter-spacing: 0.075em;
+            text-transform: uppercase;
         }
 
-        body.dark .portal-card.disabled .portal-icon {
-            background: rgba(148, 163, 184, 0.08);
-            color: #94a3b8;
+        .course-category-label::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--course-accent);
         }
 
-        /* =========================================================
-           COURSE TEXT
-        ========================================================= */
+        body.dark .course-category-label {
+            color: var(--course-accent);
+        }
 
         .portal-title {
-            color: #0f172a;
-            font-size: 21px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-size: 22px;
+            font-weight: 800;
             line-height: 1.3;
-            font-weight: 700;
-            margin-bottom: 11px;
-        }
-
-        body.dark .portal-title {
-            color: #f8fafc;
+            letter-spacing: -0.03em;
         }
 
         .portal-description {
-            color: #64748b;
+            margin-bottom: 22px;
+            color: var(--text-secondary);
             font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 28px;
+            line-height: 1.8;
         }
 
-        body.dark .portal-description {
-            color: #94a3b8;
+        .course-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0 0 26px;
+            padding: 0;
+            list-style: none;
         }
 
-        /* =========================================================
-           COURSE BUTTONS
-        ========================================================= */
+        .course-topics li {
+            padding: 7px 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface-muted);
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
 
         .portal-button {
             width: 100%;
+            min-height: 48px;
             margin-top: auto;
-            min-height: 46px;
-            padding: 11px 18px;
+            padding: 12px 16px;
             border: 0;
-            border-radius: 9px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 700;
+            gap: 9px;
+            font-size: 13px;
+            font-weight: 800;
+            text-align: center;
             cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            transition:
+                background-color 0.2s ease,
+                transform 0.2s ease;
         }
 
         .portal-button.active {
-            background: #0284c7;
+            background: var(--course-accent);
             color: #ffffff;
         }
 
         .portal-card.active:hover .portal-button.active {
-            background: #0369a1;
+            filter: brightness(0.92);
         }
 
         .portal-button.active:active {
             transform: scale(0.99);
+        }
+
+        .portal-button-arrow {
+            font-size: 18px;
+            line-height: 1;
+            transition: transform 0.2s ease;
+        }
+
+        .portal-button.active:hover .portal-button-arrow {
+            transform: translateX(3px);
+        }
+
+        .portal-card.disabled {
+            opacity: 0.88;
+            background:
+                linear-gradient(145deg, var(--surface) 0%, var(--surface-muted) 100%);
+        }
+
+        .course-coming-soon {
+            display: inline-flex;
+            align-self: flex-start;
+            margin-bottom: 15px;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: #f3e8ff;
+            color: #6b21a8;
+            font-size: 10px;
+            font-weight: 850;
+            letter-spacing: 0.055em;
+            text-transform: uppercase;
+        }
+
+        body.dark .course-coming-soon {
+            background: rgba(167, 139, 250, 0.15);
+            color: #c4b5fd;
         }
 
         .portal-button.disabled {
@@ -501,12 +696,7 @@
 
         body.dark .portal-button.disabled {
             background: #334155;
-            color: #94a3b8;
-        }
-
-        .portal-button-arrow {
-            font-size: 18px;
-            line-height: 1;
+            color: #cbd5e1;
         }
 
         /* =========================================================
@@ -515,21 +705,14 @@
 
         .footer {
             width: 100%;
-            border-top: 1px solid #e2e8f0;
-            background: #ffffff;
-            padding: 28px 24px;
-            transition: background-color 0.25s ease, border-color 0.25s ease;
-        }
-
-        body.dark .footer {
-            background: #0f172a;
-            border-color: #334155;
+            padding: 26px 24px;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
         }
 
         .footer-container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
+            width: min(100%, 1280px);
+            margin-inline: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -539,70 +722,54 @@
         .footer-brand {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
             gap: 12px;
         }
 
         .footer-brand img {
+            display: block;
             width: auto;
             height: 34px;
-            display: block;
         }
 
         .footer-text {
-            color: #64748b;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        body.dark .footer-text {
-            color: #94a3b8;
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.6;
         }
 
         .footer-links {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 22px;
         }
 
         .footer-link {
-            color: #64748b;
+            color: var(--text-secondary);
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             transition: color 0.2s ease;
         }
 
         .footer-link:hover {
-            color: #0284c7;
-        }
-
-        body.dark .footer-link {
-            color: #94a3b8;
-        }
-
-        body.dark .footer-link:hover {
-            color: #38bdf8;
+            color: var(--brand);
         }
 
         /* =========================================================
-           RESPONSIVE DESIGN
+           RESPONSIVE
         ========================================================= */
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1000px) {
+            .navbar-container {
+                width: min(100% - 40px, 1280px);
+            }
+
             .desktop-nav {
-                gap: 18px;
-                margin-right: 14px;
-            }
-
-            .nav-link {
-                font-size: 13px;
-            }
-
-            .brand img {
-                max-width: 180px;
+                gap: 20px;
             }
 
             .portal-card {
-                padding: 28px;
+                padding: 25px;
             }
         }
 
@@ -616,13 +783,11 @@
             }
 
             .portal-grid {
-                grid-template-columns: 1fr;
-                max-width: 560px;
-                margin: 0 auto;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
-            .portal-card {
-                min-height: 300px;
+            .portal-card.engineering {
+                grid-column: 1 / -1;
             }
 
             .footer-container {
@@ -632,7 +797,6 @@
 
             .footer-brand {
                 justify-content: center;
-                flex-wrap: wrap;
             }
 
             .footer-links {
@@ -646,48 +810,93 @@
             }
 
             .navbar-container {
-                padding: 0 18px;
+                width: calc(100% - 36px);
+                gap: 12px;
             }
 
             .brand img {
-                height: 45px;
+                height: 43px;
                 max-width: 175px;
             }
 
             .mobile-nav {
                 top: 64px;
-                padding-left: 18px;
-                padding-right: 18px;
+                padding-inline: 18px;
             }
 
             main {
-                padding: 108px 18px 56px;
+                padding: 88px 18px 48px;
             }
 
             .hero {
-                margin-bottom: 36px;
+                padding: 36px 20px 32px;
+                margin-bottom: 30px;
+                border-radius: 22px;
+            }
+
+            .hero::before {
+                width: 200px;
+                height: 200px;
+                top: -105px;
+                right: -90px;
+            }
+
+            .hero::after {
+                width: 135px;
+                height: 135px;
+                top: -70px;
+                right: -55px;
             }
 
             .hero h1 {
-                font-size: 2.15rem;
+                font-size: clamp(2rem, 9vw, 2.65rem);
             }
 
             .hero p {
-                font-size: 15px;
+                font-size: 14px;
+                line-height: 1.8;
             }
 
-            .portal-card {
-                min-height: 290px;
-                padding: 26px 22px;
+            .hero-bottom-note {
+                gap: 9px;
+                font-size: 11px;
+            }
+
+            .course-section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .portal-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 17px;
+            }
+
+            .portal-card,
+            .portal-card.engineering {
+                grid-column: auto;
+                padding: 24px 22px;
+                border-radius: 17px;
+            }
+
+            .portal-title {
+                font-size: 21px;
             }
 
             .footer {
                 padding: 24px 18px;
             }
 
-            .footer-links {
+            .footer-brand {
                 flex-direction: column;
                 gap: 10px;
+            }
+
+            .footer-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 18px;
             }
         }
 
@@ -706,7 +915,7 @@
 
 <body>
     <!-- =========================================================
-         NAVBAR
+         HEADER
     ========================================================= -->
 
     <header class="navbar">
@@ -720,22 +929,17 @@
                     src="https://pixelbotix.com/assets/images/logo/logo.png"
                     alt="PixelBotix"
                     width="210"
-                    height="50"
+                    height="48"
                 >
             </a>
 
             <nav class="desktop-nav" aria-label="Primary navigation">
-                <a href="https://pixelbotix.com/" class="nav-link">
-                    Home
-                </a>
-
+                <a href="https://pixelbotix.com/" class="nav-link">Home</a>
                 <a
                     href="https://pixelbotix.com/eduverse/zoho-books/"
                     class="nav-link active"
                     aria-current="page"
-                >
-                    Eduverse
-                </a>
+                >Eduverse</a>
             </nav>
 
             <div class="nav-actions">
@@ -769,26 +973,23 @@
             aria-hidden="true"
             inert
         >
-            <a href="https://pixelbotix.com/" class="mobile-nav-link">
-                Home
-            </a>
-
+            <a href="https://pixelbotix.com/" class="mobile-nav-link">Home</a>
             <a
                 href="https://pixelbotix.com/eduverse/zoho-books/"
                 class="mobile-nav-link active"
                 aria-current="page"
-            >
-                Eduverse
-            </a>
+            >Eduverse</a>
         </nav>
     </header>
 
     <!-- =========================================================
-         MAIN CONTENT
+         MAIN
     ========================================================= -->
 
     <main>
         <div class="main-container">
+
+            <!-- HERO -->
 
             <section class="hero" aria-labelledby="hero-title">
                 <div class="hero-badge">
@@ -797,151 +998,196 @@
                 </div>
 
                 <h1 id="hero-title">
-                    Welcome to <span>Eduverse</span>
+                    Explore Your <span>Learning Paths</span>
                 </h1>
 
                 <p>
-                    Choose your learning path and build practical skills
-                    through professional training in accounting, taxation,
-                    cloud accounting, and engineering.
+                    Discover learning opportunities across finance,
+                    cloud accounting, taxation, and engineering.
+                    Choose a category that matches your interests and
+                    build practical, career-oriented skills.
                 </p>
+
+                <div class="hero-bottom-note" aria-label="Platform highlights">
+                    <span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             aria-hidden="true">
+                            <path d="m5 12 4 4L19 6"/>
+                        </svg>
+                        Practical learning
+                    </span>
+                    <span class="hero-note-separator" aria-hidden="true"></span>
+                    <span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             aria-hidden="true">
+                            <path d="M12 3v18"/>
+                            <path d="m17 8-5-5-5 5"/>
+                            <path d="m7 16 5 5 5-5"/>
+                        </svg>
+                        Multiple learning paths
+                    </span>
+                </div>
             </section>
 
-            <!-- =================================================
-                 LEARNING PORTALS
-            ================================================= -->
+            <!-- COURSE CATEGORIES -->
 
-            <section class="portal-grid" aria-label="Available courses">
-
-                <!-- ACCOUNTING AND TAXATION -->
-
-                <article class="portal-card active">
-                    <div class="portal-card-content">
-                        <div class="portal-icon" aria-hidden="true">
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.8"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <rect x="4" y="3" width="16" height="18" rx="2"/>
-                                <path d="M8 7h8"/>
-                                <path d="M8 11h2"/>
-                                <path d="M14 11h2"/>
-                                <path d="M8 15h2"/>
-                                <path d="M14 15h2"/>
-                                <path d="M8 18h8"/>
-                            </svg>
-                        </div>
-
-                        <h2 class="portal-title">
-                            Accounting &amp; Taxation
-                        </h2>
-
-                        <p class="portal-description">
-                            Build a strong foundation in accounting,
-                            taxation, GST, financial records, and
-                            practical compliance workflows. Develop
-                            job-oriented skills for accounting and
-                            taxation roles.
+            <section aria-labelledby="courses-heading">
+                <div class="course-section-heading">
+                    <div>
+                        <h2 id="courses-heading">Explore Course Categories</h2>
+                        <p>
+                            Different skills, different paths, one learning platform.
                         </p>
                     </div>
 
-                    <a
-                        href="/finance/"
-                        class="portal-button active"
-                        aria-label="Explore Accounting and Taxation courses"
-                    >
-                        Explore Accounting &amp; Taxation
-                        <span class="portal-button-arrow" aria-hidden="true">→</span>
-                    </a>
-                </article>
+                    <div class="course-count">
+                        <span class="course-count-dot" aria-hidden="true"></span>
+                        Discover your interests
+                    </div>
+                </div>
 
-                <!-- ZOHO BOOKS -->
+                <div class="portal-grid" aria-label="Course categories">
 
-                <article class="portal-card active">
-                    <div class="portal-card-content">
-                        <div class="portal-icon" aria-hidden="true">
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.8"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <rect x="3" y="4" width="18" height="16" rx="2"/>
-                                <path d="M3 9h18"/>
-                                <path d="M7 14h4"/>
-                                <path d="M7 17h7"/>
-                                <path d="M16 13h2v4h-2z"/>
-                                <path d="M7 4V2"/>
-                                <path d="M17 4V2"/>
-                            </svg>
+                    <!-- ACCOUNTING AND TAXATION -->
+
+                    <article class="portal-card active accounting">
+                        <div class="portal-card-content">
+                            <div class="portal-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="1.8"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="4" y="3" width="16" height="18" rx="2"/>
+                                    <path d="M8 7h8"/>
+                                    <path d="M8 11h2"/>
+                                    <path d="M14 11h2"/>
+                                    <path d="M8 15h2"/>
+                                    <path d="M14 15h2"/>
+                                    <path d="M8 18h8"/>
+                                </svg>
+                            </div>
+
+                            <span class="course-category-label">
+                                Finance &amp; Compliance
+                            </span>
+
+                            <h3 class="portal-title">Accounting &amp; Taxation</h3>
+
+                            <p class="portal-description">
+                                Build your understanding of accounting principles,
+                                taxation, GST, financial records, and compliance
+                                processes through structured learning.
+                            </p>
+
+                            <ul class="course-topics" aria-label="Related topics">
+                                <li>Accounting Fundamentals</li>
+                                <li>GST &amp; Taxation</li>
+                                <li>Financial Records</li>
+                            </ul>
                         </div>
 
-                        <h2 class="portal-title">
-                            Zoho Books
-                        </h2>
+                        <a
+                            href="/finance/"
+                            class="portal-button active"
+                            aria-label="Explore Accounting and Taxation courses"
+                        >
+                            Explore Courses
+                            <span class="portal-button-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </article>
 
-                        <p class="portal-description">
-                            Learn cloud accounting with Zoho Books.
-                            Practise invoicing, expense management,
-                            bank reconciliation, GST workflows, and
-                            financial reporting using real-world
-                            accounting scenarios.
-                        </p>
-                    </div>
+                    <!-- ZOHO BOOKS -->
 
-                    <a
-                        href="/finance/"
-                        class="portal-button active"
-                        aria-label="Explore Zoho Books courses"
-                    >
-                        Explore Zoho Books
-                        <span class="portal-button-arrow" aria-hidden="true">→</span>
-                    </a>
-                </article>
+                    <article class="portal-card active zoho">
+                        <div class="portal-card-content">
+                            <div class="portal-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="1.8"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="16" rx="2"/>
+                                    <path d="M3 9h18"/>
+                                    <path d="M7 14h4"/>
+                                    <path d="M7 17h7"/>
+                                    <path d="M16 13h2v4h-2z"/>
+                                    <path d="M7 4V2"/>
+                                    <path d="M17 4V2"/>
+                                </svg>
+                            </div>
 
-                <!-- ROBOTICS AND ENGINEERING -->
+                            <span class="course-category-label">
+                                Cloud Accounting
+                            </span>
 
-                <article class="portal-card disabled">
-                    <div class="portal-card-content">
-                        <div class="portal-icon" aria-hidden="true">
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.8"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                                <path d="M8 21h8"/>
-                                <path d="M12 17v4"/>
-                                <path d="m7 8 4 3-4 3"/>
-                                <path d="M13 14h4"/>
-                            </svg>
+                            <h3 class="portal-title">Zoho Books</h3>
+
+                            <p class="portal-description">
+                                Explore cloud accounting with Zoho Books,
+                                including invoicing, expense management,
+                                bank reconciliation, GST workflows, and
+                                financial reporting.
+                            </p>
+
+                            <ul class="course-topics" aria-label="Related topics">
+                                <li>Invoicing</li>
+                                <li>Bank Reconciliation</li>
+                                <li>Financial Reports</li>
+                            </ul>
                         </div>
 
-                        <h2 class="portal-title">
-                            Robotics &amp; Engineering
-                        </h2>
+                        <a
+                            href="/finance/"
+                            class="portal-button active"
+                            aria-label="Explore Zoho Books courses"
+                        >
+                            Explore Courses
+                            <span class="portal-button-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </article>
 
-                        <p class="portal-description">
-                            Explore robotics, ROS2, autonomous mobile
-                            robots, bionics, and 3D scanning through
-                            hands-on engineering learning experiences.
-                        </p>
-                    </div>
+                    <!-- ROBOTICS AND ENGINEERING -->
 
-                    <span class="portal-button disabled">
-                        Coming Soon
-                    </span>
-                </article>
+                    <article class="portal-card disabled engineering">
+                        <div class="portal-card-content">
+                            <div class="portal-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="1.8"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                    <path d="M8 21h8"/>
+                                    <path d="M12 17v4"/>
+                                    <path d="m7 8 4 3-4 3"/>
+                                    <path d="M13 14h4"/>
+                                </svg>
+                            </div>
 
+                            <span class="course-category-label">
+                                Technology &amp; Engineering
+                            </span>
+
+                            <h3 class="portal-title">Robotics &amp; Engineering</h3>
+
+                            <p class="portal-description">
+                                Discover robotics, ROS2, autonomous systems,
+                                bionics, and engineering technologies through
+                                hands-on learning opportunities.
+                            </p>
+
+                            <ul class="course-topics" aria-label="Related topics">
+                                <li>Robotics &amp; ROS2</li>
+                                <li>Autonomous Systems</li>
+                                <li>Engineering</li>
+                            </ul>
+
+                            <span class="course-coming-soon">Coming Soon</span>
+                        </div>
+
+                        <span class="portal-button disabled" aria-disabled="true">
+                            Coming Soon
+                        </span>
+                    </article>
+
+                </div>
             </section>
         </div>
     </main>
@@ -953,10 +1199,7 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <a
-                    href="https://pixelbotix.com/"
-                    aria-label="PixelBotix Home"
-                >
+                <a href="https://pixelbotix.com/" aria-label="PixelBotix Home">
                     <img
                         src="https://pixelbotix.com/assets/images/logo/logo.png"
                         alt="PixelBotix"
@@ -972,17 +1215,10 @@
             </div>
 
             <nav class="footer-links" aria-label="Footer navigation">
-                <a
-                    href="https://pixelbotix.com/"
-                    class="footer-link"
-                >
+                <a href="https://pixelbotix.com/" class="footer-link">
                     PixelBotix
                 </a>
-
-                <a
-                    href="https://pixelbotix.com/contact/"
-                    class="footer-link"
-                >
+                <a href="https://pixelbotix.com/contact/" class="footer-link">
                     Contact
                 </a>
             </nav>
@@ -996,44 +1232,33 @@
     <script>
         "use strict";
 
-        /* =========================================================
-           FOOTER YEAR
-        ========================================================= */
+        /* Footer year */
 
-        const currentYear = document.getElementById("current-year");
+        document.getElementById("current-year").textContent =
+            String(new Date().getFullYear());
 
-        currentYear.textContent = String(new Date().getFullYear());
-
-        /* =========================================================
-           THEME MANAGEMENT
-        ========================================================= */
+        /* Theme management */
 
         const themeToggle = document.getElementById("theme-toggle");
         const themeIcon = document.getElementById("theme-icon");
         const themeStorageKey = "pixelbotix-eduverse-theme";
+        const themeColorMeta = document.querySelector(
+            'meta[name="theme-color"]'
+        );
 
         function applyTheme(theme) {
             const isDark = theme === "dark";
 
             document.body.classList.toggle("dark", isDark);
-
             themeIcon.textContent = isDark ? "☀" : "☾";
 
-            themeToggle.setAttribute(
-                "aria-label",
-                isDark ? "Switch to light mode" : "Switch to dark mode"
-            );
+            const label = isDark
+                ? "Switch to light mode"
+                : "Switch to dark mode";
 
-            themeToggle.setAttribute(
-                "title",
-                isDark ? "Switch to light mode" : "Switch to dark mode"
-            );
-
-            const themeColor = document.querySelector(
-                'meta[name="theme-color"]'
-            );
-
-            themeColor.setAttribute(
+            themeToggle.setAttribute("aria-label", label);
+            themeToggle.setAttribute("title", label);
+            themeColorMeta.setAttribute(
                 "content",
                 isDark ? "#0f172a" : "#f8fafc"
             );
@@ -1047,7 +1272,7 @@
                     return savedTheme;
                 }
             } catch (error) {
-                // Storage can be unavailable in restricted browser contexts.
+                /* Continue with the operating system preference. */
             }
 
             return window.matchMedia &&
@@ -1068,36 +1293,29 @@
             try {
                 localStorage.setItem(themeStorageKey, nextTheme);
             } catch (error) {
-                // Theme remains functional for the current page session.
+                /* Theme remains usable for the current page session. */
             }
         });
 
-        /* =========================================================
-           MOBILE NAVIGATION
-        ========================================================= */
+        /* Accessible mobile navigation */
 
         const mobileMenuButton = document.getElementById(
             "mobile-menu-button"
         );
-
         const mobileNav = document.getElementById("mobile-nav");
         const mobileMenuIcon = document.getElementById("mobile-menu-icon");
 
         function setMobileMenuOpen(isOpen) {
             mobileNav.classList.toggle("open", isOpen);
-
             mobileMenuButton.setAttribute(
                 "aria-expanded",
                 String(isOpen)
             );
-
             mobileMenuButton.setAttribute(
                 "aria-label",
                 isOpen ? "Close navigation menu" : "Open navigation menu"
             );
-
             mobileMenuIcon.textContent = isOpen ? "✕" : "☰";
-
             mobileNav.setAttribute("aria-hidden", String(!isOpen));
             mobileNav.inert = !isOpen;
         }
